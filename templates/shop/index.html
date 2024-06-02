@@ -1,0 +1,36 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+    Home | Online Shopping 
+{% endblock title %}
+ {% block content %}
+    {% include 'shop//include/slider.html' %}
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-12 mt-2">
+                <h1>Trending Products</h1>
+            </div>
+            {% for item in product %}
+            <div class="col-md-4 col-lg-3 m-2">
+                <div class="d-flex card mt-5 p-2" style="width: 18rem;">
+                    <div style="position: relative;">
+                        {% if product.trending %}
+                        <p style="background-color: cadetblue;color: white;border-radius: 3px;padding: 2px 4px;display: inline;position: absolute;right:13px;">Trending</p>
+                        {% endif %}
+                        <img src="{{item.productImage.url}}" class="card-img-top" alt="Category">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.name}}</h5>
+                      <p style="margin-bottom: 0;">
+                        <span class="float-start text-danger fw-bold">RS.<s>{{item.originalPrice|stringformat:'d'}}</s></span>
+                        <span class="float-end text-primary fw-bold">RS.{{item.sellingPrice|stringformat:'d'}}</span>
+                      </p>
+                    </div>
+                    <a href="{% url 'productDetails' item.category.name item.name %}" class="text-center">
+                        <button type="button" class="btn btn-primary m-2">Show More</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+ {% endblock content %}

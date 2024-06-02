@@ -1,0 +1,49 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+    Registration | Shopkart
+{% endblock title %}
+{% block content %}
+   <div class="container" style="padding-top:80px;">
+        <div class="row">
+            <div class="col-12">
+                <h1>Registration Page</h1>
+                <hr style="border:1px solid grey">
+            </div>
+            <div class="col-6">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label class="form-label d-block">UserName</label>
+                        {{form.username}}
+                        {% if form.errors.username %}
+                            <label class="text-danger">{{form.errors.username}}</label>
+                        {% endif %}
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label d-block">EmailAddress  </label>
+                        {% if form.errors.email %}
+                            <label class="text-danger">{{form.errors.email}}</label>
+                        {% endif %}
+                        {{form.email}}
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label d-block">Password  </label>
+                        {% if form.errors.password1 %}
+                        <label class="text-danger">{{form.errors.password1}}</label>
+                        {% endif %}
+                        {{form.password1}}
+                    </div>
+                <div class="mb-2">
+                    <label class="form-label d-block">Conform Password  </label>
+                    {% if form.errors.password2 %}    
+                    <label class="text-danger">{{form.errors.password2}}</label>
+                    {% endif %}
+                    {{form.password2}}
+                </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <p class="my-3">If Already User?<a href="{% url 'login' %}">Login Here</a></p>
+            </div>
+        </div>
+   </div>
+{% endblock content %}

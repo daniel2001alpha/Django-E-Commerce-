@@ -1,0 +1,11 @@
+.carousel{
+    margin-top: 60px;
+}
+.carousel-item{
+    object-fit: contain;
+    height: 500px;
+    background-position: center;
+}
+.collection_image{
+    min-height: 300px;
+}
